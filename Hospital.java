@@ -12,13 +12,15 @@ public class Hospital {
         userHospital.launch();
         
         userHospital.printPatientInfo();
+        
+        userHospital.patientDeleter("Jim Smith");
+        
+        userHospital.printPatientInfo();
     }
     
     public void launch() {
         
-        int num = 0;
-        
-        while (num < 10) {
+        for (int count = 0; count < 3; count++) {
             
             String patientName;
             int patientAge;
@@ -42,10 +44,31 @@ public class Hospital {
                 Patient anotherPatient = new Patient(patientName, patientAge, patientIllness);
                 patientListStart.addPatient(anotherPatient);
             }
-            
-            num++;
         }
     }
     public void printPatientInfo () {
+        Patient patientIterator = patientListStart;
+        do {
+            System.out.print(patientIterator.toString());
+            patientIterator = patientIterator.getNext();
+        } while (patientIterator.getNext() != null);
+    }
+    
+    public void patientDeleter(String name) {
+        
+        boolean check = false;
+        Patient patientIterator = patientListStart;
+        
+        while (!check) {
+            if (patientIterator.getName(name) == name) {
+                patientIterator = patientIterator.getNext();
+                check = true;
+            }
+            if (patientIterator.getNext().getName(name) == name) {
+                patientIterator.deletePatient(patientIterator);
+                check = true;
+            }
+            
+        }
     }
 }

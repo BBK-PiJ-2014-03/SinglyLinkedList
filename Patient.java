@@ -34,9 +34,16 @@ public class Patient {
         }
     }
     
+    public Patient getNext() {
+        return nextPatient;
+    }
+    public String getName(String testName) {
+        return this.name;
+    }
+    
     public String toString () {
-        return ("Patient Name: " + this.name +
+        return ("\nPatient Name: " + this.name +
                 "\nPatient Age: " + this.age +
-                "\nPatient Illness: " + this.illness);
+                "\nPatient Illness: " + this.illness + "\n");
     }
 }
