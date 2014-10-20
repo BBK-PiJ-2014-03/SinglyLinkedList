@@ -13,7 +13,7 @@ public class Hospital {
         
         userHospital.printPatientInfo();
         
-        userHospital.patientDeleter("Jim Smith");
+        userHospital.patientDeleter("Sammy Watkins");
         
         userHospital.printPatientInfo();
     }
@@ -59,19 +59,16 @@ public class Hospital {
     public void patientDeleter(String name) {
         Patient patientIterator = patientListStart;
         
-        if (patientIterator.getName().equals(name)) {
-            patientListStart = patientIterator.getNext();
-        }
-        else {
-            do {
-                if (patientIterator.getName().equals(name)) {
-                    patientIterator.deletePatient(patientIterator);
-                }
-                else {
-                    patientIterator = patientIterator.getNext();
-                }
-                
-            } while (patientIterator.getNext() != null);
-        }
+        boolean finish = false;
+        
+        do {
+            if (patientIterator.getName().equals(name)) {
+                patientIterator.deletePatient(patientIterator);
+                finish =  true;
+            }
+            else {
+                patientIterator = patientIterator.getNext();
+            }
+        } while (!finish);
     }
 }
