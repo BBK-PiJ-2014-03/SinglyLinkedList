@@ -20,7 +20,7 @@ public class Hospital {
     
     public void launch() {
         
-        for (int count = 0; count < 3; count++) {
+        for (int count = 0; count < 4; count++) {
             
             String patientName;
             int patientAge;
@@ -48,27 +48,30 @@ public class Hospital {
     }
     public void printPatientInfo () {
         Patient patientIterator = patientListStart;
+        System.out.print(patientIterator.toString());
+        
         do {
+            patientIterator = patientIterator.getNext();    
             System.out.print(patientIterator.toString());
-            patientIterator = patientIterator.getNext();
         } while (patientIterator.getNext() != null);
     }
     
     public void patientDeleter(String name) {
-        
-        boolean check = false;
         Patient patientIterator = patientListStart;
         
-        while (!check) {
-            if (patientIterator.getName(name) == name) {
-                patientIterator = patientIterator.getNext();
-                check = true;
-            }
-            if (patientIterator.getNext().getName(name) == name) {
-                patientIterator.deletePatient(patientIterator);
-                check = true;
-            }
-            
+        if (patientIterator.getName().equals(name)) {
+            patientListStart = patientIterator.getNext();
+        }
+        else {
+            do {
+                if (patientIterator.getName().equals(name)) {
+                    patientIterator.deletePatient(patientIterator);
+                }
+                else {
+                    patientIterator = patientIterator.getNext();
+                }
+                
+            } while (patientIterator.getNext() != null);
         }
     }
 }
